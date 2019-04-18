@@ -1,0 +1,21 @@
+spring:
+ application:
+  name: s4-service
+ datasource:
+   url: jdbc:postgresql://localhost:5432/gateway
+   username: gateway
+   password: gateway
+ jpa:
+  hibernate:
+    ddl-auto: create-drop
+  show-sql: true
+  properties:
+    hibernate:
+      jdbc:
+        lob:
+          non_contextual_creation: true
+
+server:
+ port: 8088
+ servlet:
+  context-path: /restapi
