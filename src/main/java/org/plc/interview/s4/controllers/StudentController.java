@@ -3,6 +3,7 @@ package org.plc.interview.s4.controllers;
 import org.plc.interview.s4.controllers.dto.StudentDTO;
 import org.plc.interview.s4.domain.Student;
 import org.plc.interview.s4.domain.repository.StudentRepository;
+import org.plc.interview.s4.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,15 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     @GetMapping(value = "/students")
-    public Page<StudentDTO> all(Pageable pageable) {
+    public Page<StudentDTO> all(Pageable pageable, @RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName) {
+        if (StringUtils.isNotEmpty(firstName) && StringUtils.isNotEmpty(lastName)) {
+            return studentRepository.findByFirstNameContainingAndLastNameContainingAllIgnoreCase(firstName, lastName, pageable).map(this::toDTO);
+        } else if (StringUtils.isNotEmpty(firstName)) {
+            return studentRepository.findByFirstNameContainingIgnoreCase(firstName, pageable).map(this::toDTO);
+        } else if (StringUtils.isNotEmpty(lastName)) {
+            return studentRepository.findByLastNameContainingIgnoreCase(lastName, pageable).map(this::toDTO);
+        }
+
         return studentRepository.findAll(pageable).map(this::toDTO);
     }
 

@@ -10,19 +10,7 @@
 			"name": "Student registry",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "user",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "curl_client",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -33,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstName\":\"Paolo\",\n\t\"lastName\":\"Lizarazu\"\n}"
+					"raw": "{\n\t\"firstName\":\"Ever\",\n\t\"lastName\":\"Ramos\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8088/restapi/students/",
@@ -56,19 +44,7 @@
 			"name": "Course registry",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "user",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "curl_client",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -79,7 +55,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"title\":\"Java8\",\n\t\"description\":\"An introductory course for exam certification in java 8 module I\"\n}"
+					"raw": "{\n\t\"title\":\"Python 3\",\n\t\"description\":\"An introductory course python 3\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8088/restapi/courses/",
@@ -102,19 +78,7 @@
 			"name": "add an student to a class",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "user",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "curl_client",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -125,7 +89,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"studentId\":1,\n\t\"courseId\":1\n}"
+					"raw": "{\n\t\"studentId\":5,\n\t\"courseId\":1\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8088/restapi/registry/",
@@ -196,7 +160,7 @@
 					"raw": "{\n\t\"studentId\":1,\n\t\"courseId\":1\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8088/restapi/courses/",
+					"raw": "http://localhost:8088/restapi/courses?description=Python",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -204,11 +168,51 @@
 					"port": "8088",
 					"path": [
 						"restapi",
-						"courses",
-						""
+						"courses"
+					],
+					"query": [
+						{
+							"key": "description",
+							"value": "Python",
+							"equals": true
+						}
 					]
 				},
 				"description": "this endpoint list all classes(courses) in a Pageable wraper, each class has the list of students it has registered but only by the Ids."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete student",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8088/restapi/students/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"restapi",
+						"students",
+						"3"
+					]
+				},
+				"description": "this endpoint will delete a student."
 			},
 			"response": []
 		}
