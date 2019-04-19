@@ -1,0 +1,216 @@
+{
+	"info": {
+		"name": "s4",
+		"_postman_id": "1ac139ed-039b-4d07-a530-4226748e1d25",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Student registry",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "curl_client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\":\"Paolo\",\n\t\"lastName\":\"Lizarazu\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/restapi/students/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"restapi",
+						"students",
+						""
+					]
+				},
+				"description": "this endpoint send an student information to be registered as a new studen, will not assign any class to this student."
+			},
+			"response": []
+		},
+		{
+			"name": "Course registry",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "curl_client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Java8\",\n\t\"description\":\"An introductory course for exam certification in java 8 module I\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/restapi/courses/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"restapi",
+						"courses",
+						""
+					]
+				},
+				"description": "this endpoint send an class information to be registered as a new class, will not assign any class to any student."
+			},
+			"response": []
+		},
+		{
+			"name": "add an student to a class",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "curl_client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"studentId\":1,\n\t\"courseId\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/restapi/registry/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"restapi",
+						"registry",
+						""
+					]
+				},
+				"description": "this endpoint send information to register an student into a class, you will need to send the StudentId an ClassId"
+			},
+			"response": []
+		},
+		{
+			"name": "list students",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"studentId\":1,\n\t\"courseId\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/restapi/students/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"restapi",
+						"students",
+						""
+					]
+				},
+				"description": "this endpoint list all students in a Pageable wraper, the studen has the list of classes(courses) it is registered but only by the Ids."
+			},
+			"response": []
+		},
+		{
+			"name": "list courses",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"studentId\":1,\n\t\"courseId\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/restapi/courses/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"restapi",
+						"courses",
+						""
+					]
+				},
+				"description": "this endpoint list all classes(courses) in a Pageable wraper, each class has the list of students it has registered but only by the Ids."
+			},
+			"response": []
+		}
+	]
+}
