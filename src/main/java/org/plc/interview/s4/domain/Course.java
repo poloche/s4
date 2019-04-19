@@ -22,7 +22,7 @@ public class Course implements Serializable {
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
     private Set<Registry> students;
 
     public int getCode() {

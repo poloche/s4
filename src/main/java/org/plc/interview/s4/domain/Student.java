@@ -22,7 +22,7 @@ public class Student implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Registry> courses;
 
     public Integer getId() {

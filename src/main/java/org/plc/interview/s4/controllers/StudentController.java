@@ -28,6 +28,15 @@ public class StudentController {
                 .orElseThrow(() -> new ResourceNotFoundException("Student [studentId=" + studentId + "] can't be found"));
     }
 
+    @DeleteMapping(value = "/students/{studentId}")
+    public boolean deleteStudent(@PathVariable Integer studentId) {
+        Student student = studentRepository.findById(studentId)
+
+                .orElseThrow(() -> new ResourceNotFoundException("Student [studentId=" + studentId + "] can't be found"));
+        studentRepository.delete(student);
+        return true;
+    }
+
     @PostMapping(value = "/students", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
     public Student save(@RequestBody Student student) {
