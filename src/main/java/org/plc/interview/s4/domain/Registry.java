@@ -12,13 +12,11 @@ public class Registry {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("student_id")
     @JoinColumn(name = "student_id")
-    @JsonBackReference(value = "student-courses")
     private Student student;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("class_id")
     @JoinColumn(name = "class_id")
-    @JsonBackReference(value = "courses-students")
     private Course course;
 
     public Registry() {

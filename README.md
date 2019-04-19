@@ -14,3 +14,12 @@ we are using a simple mvc architecture do deploy our API
 The Model will handle the data management(domain) package will contain the needed classes to we can interact with our data base
 The View will be handled by DTO pattern to we can send all the information as needed/required/requested by our clients
 The Controllers will retrieve data about what is needed and to we can query to model and send it with our DTOs
+
+### how to run
+
+we need start postgres container please run this command
+```
+sudo docker run -p 5432:5432 -e POSTGRES_USER=s4project -e POSTGRES_PASSWORD=s4project -e POSTGRES_DB=s4 -d postgres
+```
+once postgres started start build the application
+``` mvn clean build ```

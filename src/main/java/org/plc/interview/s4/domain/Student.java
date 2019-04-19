@@ -8,16 +8,11 @@ import java.util.Set;
 
 @Table(schema = "public", name = "student")
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-
 public class Student implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "student_id_seq",
-            sequenceName = "student_id_seq",
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "student_id_seq")
+    @SequenceGenerator(name = "student_id_seq", sequenceName = "student_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_id_seq")
     @Column(name = "id", updatable = false)
     private Integer id;
 
@@ -28,7 +23,6 @@ public class Student implements Serializable {
     private String lastName;
 
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
-    @JsonManagedReference(value = "student-courses")
     private Set<Registry> courses;
 
     public Integer getId() {
