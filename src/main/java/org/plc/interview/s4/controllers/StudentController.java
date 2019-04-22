@@ -3,6 +3,7 @@ package org.plc.interview.s4.controllers;
 import org.plc.interview.s4.controllers.dto.StudentDTO;
 import org.plc.interview.s4.domain.Student;
 import org.plc.interview.s4.domain.repository.StudentRepository;
+import org.plc.interview.s4.exceptions.ResourceNotFoundException;
 import org.plc.interview.s4.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

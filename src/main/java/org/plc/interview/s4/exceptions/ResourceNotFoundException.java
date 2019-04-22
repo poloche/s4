@@ -1,4 +1,4 @@
-package org.plc.interview.s4.controllers;
+package org.plc.interview.s4.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

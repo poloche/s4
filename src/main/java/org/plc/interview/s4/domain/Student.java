@@ -1,7 +1,5 @@
 package org.plc.interview.s4.domain;
 
-import com.fasterxml.jackson.annotation.*;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
