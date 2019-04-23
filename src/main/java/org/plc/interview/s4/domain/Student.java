@@ -2,6 +2,7 @@ package org.plc.interview.s4.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Table(schema = "public", name = "student")
@@ -22,6 +23,13 @@ public class Student implements Serializable {
 
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Registry> courses;
+
+    public Student(Integer id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.courses = new HashSet<>();
+    }
 
     public Integer getId() {
         return id;

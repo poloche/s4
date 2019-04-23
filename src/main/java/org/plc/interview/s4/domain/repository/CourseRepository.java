@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.stream.DoubleStream;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
-    Page<Course> findByTitleContainingAndDescriptionContainingAllIgnoreCase(String title, String description, Pageable pageable);
+    Page<Course> findByTitleContainingOrDescriptionContainingAllIgnoreCase(String title, String description, Pageable pageable);
 
     Page<Course> findByTitleContainingIgnoreCase(String title, Pageable pageable);
 

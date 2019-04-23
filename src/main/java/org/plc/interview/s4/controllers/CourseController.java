@@ -19,7 +19,7 @@ public class CourseController {
     @GetMapping(value = "/courses")
     public Page<CourseDTO> all(Pageable pageable, @RequestParam(required = false) String title, @RequestParam(required = false) String description) {
         if (StringUtils.isNotEmpty(title) && StringUtils.isNotEmpty(description)) {
-            return courseRepository.findByTitleContainingAndDescriptionContainingAllIgnoreCase(title, description, pageable).map(this::toDTO);
+            return courseRepository.findByTitleContainingOrDescriptionContainingAllIgnoreCase(title, description, pageable).map(this::toDTO);
         } else if (StringUtils.isNotEmpty(title)) {
             return courseRepository.findByTitleContainingIgnoreCase(title, pageable).map(this::toDTO);
         } else if (StringUtils.isNotEmpty(description)) {
@@ -29,7 +29,7 @@ public class CourseController {
     }
 
 
-    @GetMapping(value = "/course/{courseId}")
+    @GetMapping(value = "/courses/{courseId}")
     public CourseDTO findByStudentId(@PathVariable Integer courseId) {
         return courseRepository.findById(courseId)
                 .map(this::toDTO)
@@ -42,7 +42,7 @@ public class CourseController {
         return courseRepository.save(course);
     }
 
-    @DeleteMapping(value = "/students/{courseId}")
+    @DeleteMapping(value = "/courses/{courseId}")
     public boolean deleteCourse(@PathVariable Integer courseId) {
         Course course = courseRepository.findById(courseId)
 
